@@ -4,11 +4,16 @@ import axios from 'axios';
 
 function Wallet(props) {
 
-    let [account, setAccount] = useState('initial');
+    let [account, setAccount] = useState('0');
+    let [deposit, setDeposit] = useState('0');
+    let [id, setId] = useState('0')
 
-    const makeAccount = () => {
-        axios.post('/app/test', {})
-            .then( res => {console.log(res)} )
+    const getAccount = () => {
+        axios.get('/app/test/'+id, {})
+            .then( res => {
+                console.log(res)
+                setAccount(res)
+            })
             .catch( res => {console.log(res)} )
     }
 
@@ -17,8 +22,9 @@ function Wallet(props) {
             <h2>지갑</h2>
             <div>
                 주소 : {account}
+                {/*{getAccount()}*/}
             </div>
-            <button onClick={makeAccount}>지갑생성</button>
+            {/*<button onClick={makeAccount}>지갑생성</button>*/}
         </div>
     )
 
