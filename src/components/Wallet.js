@@ -4,27 +4,30 @@ import axios from 'axios';
 
 function Wallet(props) {
 
-    let [account, setAccount] = useState('0');
-    let [deposit, setDeposit] = useState('0');
-    let [id, setId] = useState('0')
+    let [account, setAccount] = useState('');
+    let [balance, setBalance] = useState('0');
+    let [id, setId] = useState('testtesst11')
 
     const getAccount = () => {
-        axios.get('/app/test/'+id, {})
+        axios.get('/app/wallet/'+id, {})
             .then( res => {
-                console.log(res)
-                setAccount(res)
+                console.log(res.data.result)
+                setBalance(res.data.result)
             })
-            .catch( res => {console.log(res)} )
+            // .catch( res => {console.log(res)} )
     }
+    useEffect(() => {
+        getAccount()
+    })
 
     return(
         <div>
             <h2>지갑</h2>
             <div>
                 주소 : {account}
-                {/*{getAccount()}*/}
+                잔액 : {balance}
             </div>
-            {/*<button onClick={makeAccount}>지갑생성</button>*/}
+            {/*<button onClick={getAccount}>지갑생성</button>*/}
         </div>
     )
 
