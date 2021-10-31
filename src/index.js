@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from "react-redux";
-import {ConnectedRouter} from "connected-react-router";
 import {createBrowserHistory} from "history";
 import createStore from "./createStore";
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom";
 
 const history = createBrowserHistory();
 const store = createStore(history);
 
 ReactDOM.render(
       <Provider store={store}>
-          <ConnectedRouter history={history}>
+          <BrowserRouter history={history}>
               <App />
-          </ConnectedRouter>
+          </BrowserRouter>
       </Provider>
     , document.getElementById('root')
 );

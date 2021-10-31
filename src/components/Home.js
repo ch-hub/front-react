@@ -1,6 +1,6 @@
 import React from "react";
 
-function Shop() {
+function Home() {
     return(
         <div>
             <h2>쇼핑몰</h2>
@@ -9,4 +9,4 @@ function Shop() {
 }
 
 
-export default Shop
+export default Home
