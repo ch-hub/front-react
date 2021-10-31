@@ -1,7 +1,10 @@
+import {useHistory} from "react-router";
 
 function Card(props){
+    let history = useHistory()
+
     return (
-        <div className="col-md-4">
+        <div className="col-md-4" onClick={()=>{ history.push("/detail/"+ props.i) }}>
             <img src={"https://codingapple1.github.io/shop/shoes"+ (props.i+1) +".jpg"} width="100%" />
             <h4>{props.item.title}</h4>
             <p>{props.item.content} & {props.item.price}</p>
