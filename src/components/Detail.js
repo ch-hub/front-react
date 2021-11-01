@@ -1,6 +1,7 @@
 import React from "react";
 import {useHistory, useParams} from "react-router";
 import {goBack} from "connected-react-router";
+import {Nav} from "react-bootstrap";
 
 function Detail(props) {
     let history = useHistory()
@@ -23,6 +24,8 @@ function Detail(props) {
                     <button onClick={()=>{history.goBack()}} className="btn btn-danger">뒤로가기</button>
                 </div>
             </div>
+
+
         </div>
     )
 }

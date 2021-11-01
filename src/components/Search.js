@@ -1,7 +1,10 @@
 import {Button, Container, FormControl, InputGroup} from "react-bootstrap";
 import React from "react";
+import styled from "styled-components";
 
-
+let box = styled.div`
+  padding: 200px;
+`
 function Search(){
     return (
         <div>

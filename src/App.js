@@ -13,6 +13,7 @@ import Card from "./components/Card";
 import Header from "./components/Header";
 import Detail from "./components/Detail";
 import Home from "./components/Home";
+import Cart from "./components/Cart";
 
 function App(){
     let [items, setItems] = useState(Data)
@@ -33,6 +34,9 @@ function App(){
             </Route>
             <Route path="/detail/:id">
                 <Detail item={items}/>
+            </Route>
+            <Route path="/cart">
+                <Cart />
             </Route>
         </div>
     )

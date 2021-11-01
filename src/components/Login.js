@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from "styled-components";
+import palette from "../lib/styles/palette";
+
+
+
 
 function Login() {
     const [inputId, setInputId] = useState('')
