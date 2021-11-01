@@ -27,6 +27,9 @@ function Wallet(props) {
                 주소 : {account}
                 잔액 : {balance}
             </div>
+            <div>
+
+            </div>
             {/*<button onClick={getAccount}>지갑생성</button>*/}
         </div>
     )

@@ -2,6 +2,7 @@ import React from "react";
 import {useHistory, useParams} from "react-router";
 import {goBack} from "connected-react-router";
 import {Nav} from "react-bootstrap";
+import axios from "axios";
 
 function Detail(props) {
     let history = useHistory()
@@ -9,6 +10,8 @@ function Detail(props) {
     let findItem = props.item.find(function (item){
         return item.id == id
     });
+
+
 
     return (
         <div className="container">
@@ -20,7 +23,7 @@ function Detail(props) {
                     <h4 className="pt-5">{findItem.title}</h4>
                     <p>{findItem.content}</p>
                     <p>{findItem.title}</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <button onClick={()=>{buy()}} className="btn btn-danger">주문하기</button>
                     <button onClick={()=>{history.goBack()}} className="btn btn-danger">뒤로가기</button>
                 </div>
             </div>
@@ -28,6 +31,10 @@ function Detail(props) {
 
         </div>
     )
+}
+
+function buy(){
+    axios.post('')
 }
 
 export default Detail

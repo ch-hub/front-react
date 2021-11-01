@@ -6,8 +6,8 @@ function Card(props){
     return (
         <div className="col-md-4" onClick={()=>{ history.push("/detail/"+ props.i) }}>
             <img src={"https://codingapple1.github.io/shop/shoes"+ (props.i+1) +".jpg"} width="100%" />
-            <h4>{props.item.title}</h4>
-            <p>{props.item.content} & {props.item.price}</p>
+            <h4>{props.item.name}</h4>
+            <p>{props.item.price} won </p>
         </div>
     )
 }
