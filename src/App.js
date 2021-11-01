@@ -33,7 +33,7 @@ function App(){
                 <Join />
             </Route>
             <Route path="/detail/:id">
-                <Detail item={items}/>
+                <Detail />
             </Route>
             <Route path="/cart">
                 <Cart />
