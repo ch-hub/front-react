@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {Container} from "react-bootstrap";
 
 
 function Wallet(props) {
@@ -11,10 +12,13 @@ function Wallet(props) {
     const getAccount = () => {
         axios.get('/app/wallet/'+id, {})
             .then( res => {
-                console.log(res.data.result)
-                setBalance(res.data.result)
+                let {walletAd, walletBalance} = res.data.result;
+                // console.log(walletAd)
+                // console.log(walletBalance)
+                setAccount(walletAd)
+                setBalance(walletBalance)
             })
-            // .catch( res => {console.log(res)} )
+            .catch( res => {console.log(res)} )
     }
     useEffect(() => {
         getAccount()
@@ -23,13 +27,10 @@ function Wallet(props) {
     return(
         <div>
             <h2>지갑</h2>
-            <div>
-                주소 : {account}
-                잔액 : {balance}
-            </div>
-            <div>
-
-            </div>
+            <Container>
+                <p>주소 : {account}</p>
+                <p>잔액 : {balance}</p>
+            </Container>
             {/*<button onClick={getAccount}>지갑생성</button>*/}
         </div>
     )

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
 function Join() {
     let [id, setId] = useState('')
@@ -16,9 +17,11 @@ function Join() {
         setPWError(e.target.value !== pw);
         setPWCheck(e.target.value);
     };
-
-
-    // login 버튼 클릭 이벤트
+    const handleInputId = (e) => {setId(e.target.value)}
+    const handleInputPw = (e) => {setPW(e.target.value)}
+    const handleInputName = (e) => {setName(e.target.value)}
+    const handleInputPhone = (e) => {setPhone(e.target.value)}
+    const handleInputAddr = (e) => {setAddress(e.target.value)}
     const onClickJoin = () => {
         axios.post('/app/users',{
             id,
@@ -32,39 +35,44 @@ function Join() {
     }
 
     return(
-        <div>
-            <div>
-                <h1>회원가입</h1>
-            </div>
-            <div>
-                <label>ID :</label>
-                <input name="id" value={id} onChange={e => setId(e.target.value)}/>
-            </div>
-            <div>
-                <label>PW :</label>
-                <input name="pw" type="password" value={pw} onChange={e => setPW(e.target.value)} />
-            </div>
-            <div>
-                <label>PW 확인 :</label>
-                <input name="pw-check" type="password" value={pwCheck} onChange={onChangePasswordCheck} />
-                {pwError && <div style={{color : 'red'}}>비밀번호가 일치하지 않습니다.</div>}
-            </div>
-            <div>
-                <label>NAME :</label>
-                <input name="name" value={name} onChange={e => setName(e.target.value)}/>
-            </div>
-            <div>
-                <label>Phone :</label>
-                <input name="phone" value={phone} onChange={e => setPhone(e.target.value)} />
-            </div>
-            <div>
-                <label>Address :</label>
-                <input name="address" value={address} onChange={e => setAddress(e.target.value)}/>
-            </div>
-            <div>
-                <button type='button' onClick={onClickJoin}>회원가입</button>
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <Col className="text-center">
+                    <h1>회원가입</h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col md="2"/>
+                <Col>
+                    <Form onSubmit={onClickJoin}>
+                        <Form.Group className="mb-3" controlId="formId">
+                            <Form.Label>ID</Form.Label>
+                            <Form.Control type="text" placeholder="Enter id" onChange={handleInputId}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" onChange={handleInputPw}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formId">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter id" onChange={handleInputName}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formId">
+                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Control type="text" placeholder="Enter id" onChange={handleInputPhone}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formId">
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control type="text" placeholder="Enter id" onChange={handleInputAddr}/>
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            회원가입
+                        </Button>
+                    </Form>
+                </Col>
+                <Col md="2"/>
+            </Row>
+        </Container>
     )
 }
 

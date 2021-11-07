@@ -3,8 +3,7 @@ import Search from "./Search";
 import Card from "./Card";
 import Wallet from "./Wallet";
 import Data from "./data";
-import {Nav} from "react-bootstrap";
-import {CSSTransition} from "react-transition-group";
+import {Container, Nav} from "react-bootstrap";
 import axios from "axios";
 
 function Home() {
@@ -13,7 +12,7 @@ function Home() {
     let [items, setItems] = useState(Data)
 
     return(
-        <div>
+        <Container>
             <Nav className="mt-5" variant="tabs" defaultActiveKey="shop">
                 <Nav.Item>
                     <Nav.Link eventKey="shop" onClick={()=>{setTab(0)}}>상품</Nav.Link>
@@ -23,8 +22,7 @@ function Home() {
                 </Nav.Item>
             </Nav>
             <TabContent tab={tab} items={items}/>
-
-        </div>
+        </Container>
     )
 }
 
@@ -57,7 +55,7 @@ function TabContent(props){
                     <div className="row">
                         {
                             products.map((a,i) => {
-                                return <Card item={a} i={i} />
+                                return <Card item={a} i={i} key={i} />
                             })
                         }
                     </div>

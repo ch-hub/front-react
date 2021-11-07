@@ -40,8 +40,15 @@ function Detail(props) {
                     <h4 className="pt-5">{product.name}</h4>
                     <p>가격 : {product.price}</p>
                     <p>설명 : {product.info}</p>
-                    <button onClick={()=>{buy()}} className="btn btn-danger">주문하기</button>
-                    <button onClick={()=>{history.goBack()}} className="btn btn-danger">뒤로가기</button>
+                    <div>
+                        <button onClick={()=>{ history.push("/checkout") }} className="btn btn-danger">주문하기</button>
+                    </div>
+                    <div>
+                        <button onClick={()=>{ history.push("/cart") }} className="btn btn-danger">장바구니</button>
+                    </div>
+                    <div>
+                        <button onClick={()=>{ history.goBack() }} className="btn btn-danger">뒤로가기</button>
+                    </div>
                 </div>
             </div>
 
@@ -50,21 +57,6 @@ function Detail(props) {
     )
 }
 
-function buy(props){
 
-    const installment = 2
-
-    axios.post('/app/deal',{
-        buyerId: 'buyer',
-        toUserId: 'company',
-        installment: installment,
-    })
-        .then((response) => {
-            console.log(response)
-        })
-        .catch((e) => {
-            console.error(e)
-        })
-}
 
 export default Detail
