@@ -1,11 +1,18 @@
 import axios from "axios";
+import {Button, Col, Container, Row} from "react-bootstrap";
 
 
 function Checkout(){
     return (
-        <div>
-
-        </div>
+        <Container>
+            <Row>
+                <Col />
+                <Col className="text-center">
+                    <Button>결제하기</Button>
+                </Col>
+                <Col />
+            </Row>
+        </Container>
     )
 }
 

@@ -1,5 +1,5 @@
-import {Alert, Table} from "react-bootstrap";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {Container, Table} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
 
 function Cart(props){
 
@@ -7,7 +7,7 @@ function Cart(props){
     let dispatch = useDispatch();
 
     return (
-        <div>
+        <Container>
             <Table striped bordered hover size="sm">
                 <thead>
                 <tr>
@@ -32,30 +32,9 @@ function Cart(props){
                 }
                 </tbody>
             </Table>
-
-            {
-                props.isOpen
-                ?   <Alert className="m-md-5" variant='primary'>
-                        <p>This is a primary alert—check it out!</p>
-                        <button onClick={()=>{props.dispatch({type:'close'})}}>닫기</button>
-                    </Alert>
-                :   null
-            }
-
-        </div>
-
-
-
+        </Container>
     )
 }
 
-// function stateToProps(state){
-//     return {
-//         state : state.reducer,
-//         isOpen : state.reducer2
-//     }
-// }
-
-// export default connect(stateToProps)(Cart)
 
 export default Cart

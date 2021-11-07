@@ -30,42 +30,39 @@ function Login() {
 
 
     return(
-        <div>
-            <Container>
-                <Row>
-                    <Col className="text-center">
-                        <h1>로그인</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="2"/>
-                    <Col>
-                        <Form onSubmit={onClickLogin}>
-                            <Form.Group className="mb-3" controlId="formId">
-                                <Form.Label>ID</Form.Label>
-                                <Form.Control type="text" placeholder="Enter id" onChange={handleInputId}/>
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="formPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" onChange={handleInputPw}/>
-                            </Form.Group>
-                            <Button variant="primary" type="submit">
-                                로그인
-                            </Button>
-                        </Form>
-                    </Col>
-                    <Col md="2"/>
-                </Row>
-                <Row>
-                    <Col md="2" />
-                    <Col>
-                        <Button>회원가입</Button>
-                    </Col>
-                    <Col md="2" />
-                </Row>
-            </Container>
-
-        </div>
+        <Container>
+            <Row>
+                <Col className="text-center">
+                    <h1>로그인</h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col md="2"/>
+                <Col>
+                    <Form onSubmit={onClickLogin}>
+                        <Form.Group className="mb-3" controlId="formId">
+                            <Form.Label>ID</Form.Label>
+                            <Form.Control type="text" placeholder="Enter id" onChange={handleInputId}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" onChange={handleInputPw}/>
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                            로그인
+                        </Button>
+                    </Form>
+                </Col>
+                <Col md="2"/>
+            </Row>
+            <Row>
+                <Col md="2" />
+                <Col>
+                    <Button>회원가입</Button>
+                </Col>
+                <Col md="2" />
+            </Row>
+        </Container>
     )
 }
 

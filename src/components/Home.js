@@ -3,7 +3,7 @@ import Search from "./Search";
 import Card from "./Card";
 import Wallet from "./Wallet";
 import Data from "./data";
-import {Container, Nav} from "react-bootstrap";
+import {Container, Nav, Row} from "react-bootstrap";
 import axios from "axios";
 
 function Home() {
@@ -51,15 +51,15 @@ function TabContent(props){
         return (
             <div>
                 <Search />
-                <div className="container">
-                    <div className="row">
+                <Container>
+                    <Row>
                         {
                             products.map((a,i) => {
                                 return <Card item={a} i={i} key={i} />
                             })
                         }
-                    </div>
-                </div>
+                    </Row>
+                </Container>
             </div>
         )
     }else{

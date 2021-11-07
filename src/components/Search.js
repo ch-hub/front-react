@@ -1,15 +1,12 @@
-import {Button, Container, FormControl, InputGroup} from "react-bootstrap";
+import {Button, Col, Container, FormControl, InputGroup} from "react-bootstrap";
 import React from "react";
-import styled from "styled-components";
 
-let box = styled.div`
-  padding: 200px;
-`
 function Search(){
     return (
-        <div>
-            <Container>
-                <InputGroup className="mb-3" xs lg="2">
+        <Container>
+            <Col md="2"/>
+            <Col md="auto">
+                <InputGroup>
                     <FormControl
                         placeholder="검색할 것"
                         aria-label="검색문"
@@ -19,8 +16,9 @@ function Search(){
                         검색
                     </Button>
                 </InputGroup>
-            </Container>
-        </div>
+            </Col>
+            <Col md="2"/>
+        </Container>
     )
 }
 

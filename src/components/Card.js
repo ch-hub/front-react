@@ -1,14 +1,25 @@
 import {useHistory} from "react-router";
+import {Col, Container, Row} from "react-bootstrap";
 
-function Card(props){
+function Card({item,i}){
     let history = useHistory()
 
     return (
-        <div className="col-md-4" onClick={()=>{ history.push("/detail/"+ (props.i+1)) }}>
-            <img src={"https://codingapple1.github.io/shop/shoes"+ (props.i+1) +".jpg"} width="100%" />
-            <h4>{props.item.name}</h4>
-            <p>{props.item.price} won </p>
-        </div>
+        <Container className="col-md-4" onClick={()=>{ history.push("/detail/"+ (i+1)) }}>
+            <Row>
+                <img src={"https://codingapple1.github.io/shop/shoes"+ (i+1) +".jpg"} width="100%" />
+            </Row>
+            <Row>
+                <Col className="text-center">
+                    {item.price} won
+                </Col>
+            </Row>
+            <Row>
+                <Col className="text-center">
+                    {item.name}
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
