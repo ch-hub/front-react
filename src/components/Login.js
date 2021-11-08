@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
+import data from "./data";
 
 
 function Login() {
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
+
+    let tempJwt
 
     // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
     const handleInputId = (e) => {
@@ -20,14 +23,32 @@ function Login() {
     const onClickLogin = (e) => {
         e.preventDefault()
         console.log('click login')
-        axios.post('/app/users',{
+        axios.post('/app/login',{
             id : inputId,
             pw : inputPw
         })
-            .then( res => { console.log(res) })
+            .then( res => {
+                // console.log(res)
+                const {jwt} = res.data.result
+                tempJwt = jwt
+                axios.defaults.headers.common['Authorization'] = `Bearer ${tempJwt}`
+                console.log(tempJwt)
+            })
             .catch( res => { console.log((res)) })
     }
 
+
+    const apiTest = (e) => {
+        e.preventDefault()
+        console.log('click testButton')
+        // console.log(tempJwt)
+        axios.defaults.headers.common['x-access-token'] = tempJwt
+        console.log(axios.defaults.headers.common)
+        axios.get(`/app/wallet/${inputId}`)
+            .then( res => {
+                console.log(res)
+                })
+    }
 
     return(
         <Container>
@@ -59,8 +80,14 @@ function Login() {
                 <Col md="2" />
                 <Col>
                     <Button>회원가입</Button>
+                    <Button onClick={apiTest}>Test</Button>
                 </Col>
                 <Col md="2" />
+            </Row>
+            <Row>
+                <Col>{inputId}</Col>
+                <Col>{inputPw}</Col>
+                <Col>{tempJwt}</Col>
             </Row>
         </Container>
     )
