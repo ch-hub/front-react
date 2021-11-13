@@ -25,11 +25,6 @@ function Navigations() {
           <Link to="/cart">장바구니</Link>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="disabled" disabled>
-          Disabled
-        </Nav.Link>
-      </Nav.Item>
     </Nav>
   );
 }

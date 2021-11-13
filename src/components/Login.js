@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import data from './data';
+import { useDispatch } from 'react-redux';
+import { saveInput } from '../modules/login';
+import { useHistory } from 'react-router';
 
 function Login() {
+  let dispatch = useDispatch();
+  let history = useHistory();
+
   const [inputId, setInputId] = useState('');
   const [inputPw, setInputPw] = useState('');
 
@@ -31,8 +36,14 @@ function Login() {
         // console.log(res)
         const { jwt } = res.data.result;
         tempJwt = jwt;
-        axios.defaults.headers.common['Authorization'] = `Bearer ${tempJwt}`;
+        axios.defaults.headers.common['x-access-token'] = tempJwt;
         console.log(tempJwt);
+        dispatch(saveInput({ id: inputId, pw: inputPw }));
+        localStorage.setItem(
+          'auth',
+          JSON.stringify({ id: inputId, pw: inputPw }),
+        );
+        history.push('/');
       })
       .catch((res) => {
         console.log(res);

@@ -1,8 +1,17 @@
 import { Link } from 'react-router-dom';
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import React from 'react';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useEffect } from 'react';
 
-function Header() {
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'white',
+};
+
+function Header({ id }) {
+  useEffect(() => {
+    console.log('header: ', id);
+  }, [id]);
+
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
@@ -17,8 +26,37 @@ function Header() {
           HONGIK BNPL
         </Navbar.Brand>
         <Nav className="justify-content-end">
-          <Nav.Link href="/login">로그인</Nav.Link>
-          <Nav.Link href="/join">회원가입</Nav.Link>
+          {id !== '' ? (
+            <>
+              <Nav.Link>
+                <Link to="/myInfo" style={linkStyle}>
+                  {id} 님 환영합니다.
+                </Link>
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  localStorage.removeItem('auth');
+                  window.location.replace('/');
+                }}
+                style={linkStyle}
+              >
+                로그아웃
+              </Nav.Link>
+            </>
+          ) : (
+            <>
+              <Nav.Link>
+                <Link to="/login" style={linkStyle}>
+                  로그인
+                </Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/join" style={linkStyle}>
+                  회원가입
+                </Link>
+              </Nav.Link>
+            </>
+          )}
         </Nav>
       </Container>
     </Navbar>
