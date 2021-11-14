@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
@@ -26,7 +26,6 @@ function Login() {
   // login 버튼 클릭 이벤트
   const onClickLogin = (e) => {
     e.preventDefault();
-    console.log('click login');
     axios
       .post('/app/login', {
         id: inputId,
@@ -37,7 +36,6 @@ function Login() {
         const { jwt } = res.data.result;
         tempJwt = jwt;
         axios.defaults.headers.common['x-access-token'] = tempJwt;
-        console.log(tempJwt);
         dispatch(saveInput({ id: inputId, pw: inputPw }));
         localStorage.setItem(
           'auth',

@@ -11,25 +11,27 @@ import Carousels from './components/Carousels';
 import Navigations from './components/Navigations';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveInput } from './modules/login';
+import axios from 'axios';
+import { useHistory } from 'react-router';
 
 function App() {
   let { id, pw } = useSelector((state) => state.login);
   let dispatch = useDispatch();
+  let history = useHistory();
 
   useEffect(() => {
-    if (id && pw) {
-    } else {
-      // const temp = localStorage.getItem('auth');
-      // const { id, pw } = JSON.parse(temp);
-      // console.log(id, pw);
-    }
-  }, [id, pw]);
-
-  useEffect(() => {
+    // 인증
     const temp = localStorage.getItem('auth');
     if (temp) {
       dispatch(saveInput(JSON.parse(temp)));
     }
+
+    // 클래이튼 가격
+    axios.get('/app/klay').then((res) => {
+      const value = JSON.parse(res.data.result);
+      console.log(value);
+      console.log('hi');
+    });
   }, []);
 
   return (

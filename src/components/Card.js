@@ -14,15 +14,16 @@ function Card({ item, i }) {
     >
       <Row>
         <img
+          alt={''}
           src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'}
           width="100%"
         />
       </Row>
       <Row>
-        <Col className="text-center">{item.price} won</Col>
+        <Col className="text-center">{item.name}</Col>
       </Row>
       <Row>
-        <Col className="text-center">{item.name}</Col>
+        <Col className="text-center">{item.price} won</Col>
       </Row>
     </Container>
   );

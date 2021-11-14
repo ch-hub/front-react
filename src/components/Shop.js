@@ -5,7 +5,6 @@ import Wallet from './Wallet';
 import Data from './data';
 import { Container, Nav, Row } from 'react-bootstrap';
 import axios from 'axios';
-import Carousels from './Carousels';
 
 function Shop() {
   let [tab, setTab] = useState(0);
