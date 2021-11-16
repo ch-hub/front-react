@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Search from './Search';
 import Card from './Card';
-import Wallet from './Wallet';
 import Data from './data';
 import { Container, Nav, Row } from 'react-bootstrap';
 import axios from 'axios';
+import Cart from './Cart';
 
 function Shop() {
   let [tab, setTab] = useState(0);
@@ -13,7 +13,7 @@ function Shop() {
 
   return (
     <Container>
-      <Nav className="mt-5" variant="tabs" defaultActiveKey="shop">
+      <Nav fill variant="tabs" className="m-3" defaultActiveKey="shop">
         <Nav.Item>
           <Nav.Link
             eventKey="shop"
@@ -21,17 +21,28 @@ function Shop() {
               setTab(0);
             }}
           >
-            상품
+            구매
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            eventKey="wallet"
+            eventKey="seller"
             onClick={() => {
               setTab(1);
             }}
+            disabled
           >
-            지갑
+            판매
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="cart"
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            장바구니
           </Nav.Link>
         </Nav.Item>
       </Nav>
@@ -72,8 +83,12 @@ function TabContent(props) {
         </Container>
       </div>
     );
+  } else if (props.tab === 1) {
+    // 판매자 페이지
+    return <></>;
   } else {
-    return <Wallet />;
+    // 장바구니
+    return <Cart />;
   }
 }
 export default Shop;

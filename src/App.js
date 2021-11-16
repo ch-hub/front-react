@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveInput } from './modules/login';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import MyInfo from './components/MyInfo';
 
 function App() {
   let { id, pw } = useSelector((state) => state.login);
@@ -66,6 +67,7 @@ function App() {
         </Route>
         <Route path="/myInfo">
           <Navigations />
+          <MyInfo />
         </Route>
       </Switch>
     </div>
