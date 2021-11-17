@@ -13,11 +13,7 @@ function Card({ item, i }) {
       }}
     >
       <Row>
-        <img
-          alt={''}
-          src={'https://codingapple1.github.io/shop/shoes' + (i + 1) + '.jpg'}
-          width="100%"
-        />
+        <img alt={'로딩중입니다.'} src={`img/${item.name}.jpg`} width="100%" />
       </Row>
       <Row>
         <Col className="text-center">{item.name}</Col>

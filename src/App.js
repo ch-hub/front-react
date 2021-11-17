@@ -31,7 +31,6 @@ function App() {
     axios.get('/app/klay').then((res) => {
       const value = JSON.parse(res.data.result);
       console.log(value);
-      console.log('hi');
     });
   }, []);
 

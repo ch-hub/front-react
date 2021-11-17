@@ -9,7 +9,7 @@ function Detail(props) {
   let dispatch = useDispatch();
   let history = useHistory();
   let { id } = useParams();
-  const [product, setProduct] = useState({ name: 'hello' });
+  const [product, setProduct] = useState({ name: '' });
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -66,18 +66,15 @@ function Detail(props) {
 
   if (!product) return null;
 
+  console.log(product);
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-6">
           <img
-            src={
-              'https://codingapple1.github.io/shop/shoes' +
-              parseInt(id) +
-              '.jpg'
-            }
+            src={`/img/${product.name}.jpg`}
             width="100%"
-            alt=""
+            alt="로딩중입니다."
           />
         </div>
         <div className="col-md-6 mt-4">

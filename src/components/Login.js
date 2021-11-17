@@ -39,7 +39,7 @@ function Login() {
         dispatch(saveInput({ id: inputId, pw: inputPw }));
         localStorage.setItem(
           'auth',
-          JSON.stringify({ id: inputId, pw: inputPw }),
+          JSON.stringify({ id: inputId, pw: inputPw, jwt: jwt }),
         );
         history.push('/');
       })

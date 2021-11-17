@@ -70,6 +70,7 @@ function TabContent(props) {
 
   if (!products) return null;
 
+  console.log(products);
   if (props.tab === 0) {
     return (
       <div>
