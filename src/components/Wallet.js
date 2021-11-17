@@ -16,6 +16,7 @@ function Wallet(props) {
   let [stable, setStable] = useState(0);
 
   let [nftList, setNftList] = useState([]);
+  let [nft, setNft] = useState({});
   // let nftList;
 
   let date = '2021-11-16T09:37:43.000Z';
@@ -37,11 +38,14 @@ function Wallet(props) {
           setStable(stableBalance);
           setAccount(walletAd);
 
-          productIdxList.forEach(async (id) => {
-            console.log('id : ', id);
-            const response = await axios.get('/app/products/' + id);
-            setNftList([...nftList, response.data.result[0]]);
+          let list = [];
+          productIdxList.forEach((id) => {
+            axios.get('/app/products/' + id).then((response) => {
+              const { name, info } = response.data.result[0];
+              list.push({ name, info });
+            });
           });
+          setNftList(list);
         })
         .catch((res) => {
           console.log(res);
@@ -61,11 +65,12 @@ function Wallet(props) {
     }
   }, []);
 
-  useEffect(() => {
-    return () => {
-      console.log(nftList);
-    };
-  }, [nftList]);
+  // useEffect(() => {
+  //   console.log(nft);
+  //   return () => {
+  //     setNftList([...nftList, nft]);
+  //   };
+  // }, [nft]);
 
   const getKlay = () => {
     const amount = 1;
@@ -136,20 +141,29 @@ function Wallet(props) {
           <h4>구매한 NFT 상품</h4>
         </Col>
       </Row>
-      <Row>
-        {nftList.map((a, i) => {
-          return (
-            <Col key={i} md={4} xs={6}>
-              <Card className="text-center">
-                <Card.Img variant="top" src={`/img/${a.name}.jpg`} />
-                <Card.Body>
-                  <Card.Title>{a.name}</Card.Title>
-                  <Card.Text>{a.info}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          );
-        })}
+      <Row className="mb-5">
+        {nftList ? (
+          nftList.map((a, i) => {
+            return (
+              <Col key={i} md={4} xs={6}>
+                <Card className="text-center">
+                  <Card.Img
+                    variant="top"
+                    src={`/img/${a.name}.jpg`}
+                    height="200px"
+                    width="200px"
+                  />
+                  <Card.Body>
+                    <Card.Title>{a.name}</Card.Title>
+                    <Card.Text>{a.info}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })
+        ) : (
+          <div>loading</div>
+        )}
       </Row>
     </Container>
   );

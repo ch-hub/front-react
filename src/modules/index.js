@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import auth from './auth';
 import login from './login';
 import token from './token';
 import checkout from './checkout';

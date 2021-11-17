@@ -4,7 +4,6 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { saveInput } from '../modules/login';
 import { useHistory } from 'react-router';
-import MyAlert from './MyAlert';
 import { startModal } from '../modules/info';
 
 function Login() {
@@ -52,17 +51,6 @@ function Login() {
         );
         console.log(res);
       });
-  };
-
-  const apiTest = (e) => {
-    e.preventDefault();
-    console.log('click testButton');
-    // console.log(tempJwt)
-    axios.defaults.headers.common['x-access-token'] = tempJwt;
-    console.log(axios.defaults.headers.common);
-    axios.get(`/app/wallet/${inputId}`).then((res) => {
-      console.log(res);
-    });
   };
 
   return (

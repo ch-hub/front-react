@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 
 function MyCard({ item, i }) {
   let history = useHistory();

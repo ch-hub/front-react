@@ -16,6 +16,7 @@ import styled from 'styled-components';
 function Checkout() {
   const { orders } = useSelector((state) => state.checkout);
   let history = useHistory();
+
   const [installment, setInstallment] = useState(0);
 
   useEffect(() => {
@@ -74,17 +75,20 @@ function Checkout() {
                 ? '할부날짜를 정하시오'
                 : `${installment} 개월`}
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => setInstallment(3)} eventKey="1">
-                3개월
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => setInstallment(6)} eventKey="2">
-                6개월
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => setInstallment(12)} eventKey="3">
-                12개월
-              </Dropdown.Item>
+              {Array(11)
+                .fill(0)
+                .map((a, i) => {
+                  return (
+                    <Dropdown.Item
+                      onClick={() => setInstallment(i + 2)}
+                      eventKey={i}
+                      key={i}
+                    >
+                      {i + 2} 개월
+                    </Dropdown.Item>
+                  );
+                })}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
