@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Col, Container, Dropdown, Row, Table } from 'react-bootstrap';
+import {
+  Button,
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Row,
+  Table,
+} from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
 
 function Checkout() {
   const { orders } = useSelector((state) => state.checkout);
@@ -30,6 +39,7 @@ function Checkout() {
 
     history.push('/myInfo');
   };
+
   return (
     <Container>
       <Row>
@@ -59,13 +69,12 @@ function Checkout() {
       <Row>
         <Col className="text-end">
           <Dropdown>
-            <Dropdown.Toggle variant="primary" id="installment-period">
-              {installment === 0 ? (
-                <div>할부개월수 선택</div>
-              ) : (
-                <div>{installment} 개월</div>
-              )}
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              {installment === 0
+                ? '할부날짜를 정하시오'
+                : `${installment} 개월`}
             </Dropdown.Toggle>
+
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => setInstallment(3)} eventKey="1">
                 3개월

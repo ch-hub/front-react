@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function Bnpl() {
+  const id = useSelector((state) => state.login.id);
   let [info, setInfo] = useState([0, 0, 0]);
 
   const [isLate, setLate] = useState(false);
+
+  useEffect(async () => {
+    console.log('bnpl components');
+    console.log('id : ', id);
+    const res = await axios.get('/app/bnpl/' + id);
+    console.log(res);
+  }, []);
 
   return (
     <Container>

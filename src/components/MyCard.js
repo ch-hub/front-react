@@ -16,12 +16,12 @@ function MyCard({ item, i }) {
         <Card.Img
           variant="top"
           src={`img/${item.name}.jpg`}
-          height="200px"
-          width="100px"
+          height="230px"
+          width="230px"
         />
         <Card.Body>
           <Card.Title>{item.name}</Card.Title>
-          <Card.Text>{item.price} 원</Card.Text>
+          <Card.Text>{item.price.toLocaleString('ko-KR')} 원</Card.Text>
         </Card.Body>
       </Card>
     </Container>

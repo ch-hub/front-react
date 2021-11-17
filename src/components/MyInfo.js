@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { Container, Nav } from 'react-bootstrap';
 import Wallet from './Wallet';
 import Bnpl from './Bnpl';
+import { useHistory } from 'react-router';
 
-function MyInfo() {
+function MyInfo({ isLogin }) {
+  let history = useHistory();
   let [tab, setTab] = useState(0);
+
+  if (isLogin === false) {
+    return history.push('/');
+  }
 
   return (
     <Container>

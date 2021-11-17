@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Join from './components/Join';
@@ -14,11 +14,28 @@ import { saveInput } from './modules/login';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import MyInfo from './components/MyInfo';
+import styled from 'styled-components';
+
+let MyModal = styled.div`
+  background-color: skyblue;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  p {
+    margin-bottom: 0;
+  }
+`;
 
 function App() {
   let { id, pw } = useSelector((state) => state.login);
+  let info = '테스트용';
   let dispatch = useDispatch();
   let history = useHistory();
+
+  let [alert, setAlert] = useState(false);
 
   useEffect(() => {
     // 인증
@@ -34,9 +51,20 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+  }, []);
+
   return (
     <div className="App">
       <Header id={id} />
+      {alert ? (
+        <MyModal>
+          <p>{info}</p>
+        </MyModal>
+      ) : null}
       <Switch>
         <Route exact path="/">
           <Navigations />
@@ -66,7 +94,7 @@ function App() {
         </Route>
         <Route path="/myInfo">
           <Navigations />
-          <MyInfo />
+          <MyInfo isLogin={true} />
         </Route>
       </Switch>
     </div>

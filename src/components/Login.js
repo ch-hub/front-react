@@ -4,7 +4,7 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { saveInput } from '../modules/login';
 import { useHistory } from 'react-router';
-import MyModal from './MyModal';
+import MyAlert from './MyAlert';
 
 function Login() {
   let dispatch = useDispatch();
@@ -64,7 +64,7 @@ function Login() {
 
   return (
     <Container>
-      <Row>
+      <Row className="mt-5">
         <Col className="text-center">
           <h1>로그인</h1>
         </Col>

@@ -3,9 +3,10 @@ import axios from 'axios';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { saveInput } from '../modules/login';
 import { useDispatch, useSelector } from 'react-redux';
-import MyCard from './MyCard';
+import { useHistory } from 'react-router';
 
 function Wallet(props) {
+  let history = useHistory();
   let dispatch = useDispatch();
   const buyerId = useSelector((state) => state.login.id);
 
@@ -45,7 +46,12 @@ function Wallet(props) {
           console.log(res);
         });
     };
-    getAccount();
+    try {
+      getAccount();
+    } catch (e) {
+      console.log(e);
+      history.goBack();
+    }
   }, []);
 
   useEffect(() => {
