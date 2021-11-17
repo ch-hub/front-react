@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { saveInput } from '../modules/login';
 import { useHistory } from 'react-router';
 import MyAlert from './MyAlert';
+import { startModal } from '../modules/info';
 
 function Login() {
   let dispatch = useDispatch();
@@ -12,7 +13,6 @@ function Login() {
 
   const [inputId, setInputId] = useState('');
   const [inputPw, setInputPw] = useState('');
-  const [isEnd, setEnd] = useState(false);
 
   let tempJwt;
 
@@ -43,10 +43,13 @@ function Login() {
           'auth',
           JSON.stringify({ id: inputId, pw: inputPw, jwt: jwt }),
         );
-        setEnd(true);
+        dispatch(startModal({ text: '로그인 성공', color: 'lightcyan' }));
         history.push('/');
       })
       .catch((res) => {
+        dispatch(
+          startModal({ text: '로그인 실패', color: 'lightgoldenrodyellow' }),
+        );
         console.log(res);
       });
   };

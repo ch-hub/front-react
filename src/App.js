@@ -15,9 +15,10 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 import MyInfo from './components/MyInfo';
 import styled from 'styled-components';
+import { endModal } from './modules/info';
 
 let MyModal = styled.div`
-  background-color: skyblue;
+  background-color: ${(props) => props.color};
   padding: 10px;
   border-radius: 5px;
   max-width: 500px;
@@ -31,11 +32,9 @@ let MyModal = styled.div`
 
 function App() {
   let { id, pw } = useSelector((state) => state.login);
-  let info = '테스트용';
+  let { isAlert, color, text } = useSelector((state) => state.info);
   let dispatch = useDispatch();
   let history = useHistory();
-
-  let [alert, setAlert] = useState(false);
 
   useEffect(() => {
     // 인증
@@ -53,16 +52,16 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setAlert(false);
+      dispatch(endModal());
     }, 2000);
-  }, []);
+  }, [isAlert]);
 
   return (
     <div className="App">
       <Header id={id} />
-      {alert ? (
-        <MyModal>
-          <p>{info}</p>
+      {isAlert ? (
+        <MyModal color={color}>
+          <p>{text}</p>
         </MyModal>
       ) : null}
       <Switch>

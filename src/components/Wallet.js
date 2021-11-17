@@ -4,6 +4,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { saveInput } from '../modules/login';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { startModal } from '../modules/info';
 
 function Wallet(props) {
   let history = useHistory();
@@ -50,6 +51,12 @@ function Wallet(props) {
       getAccount();
     } catch (e) {
       console.log(e);
+      dispatch(
+        startModal({
+          text: '로그인 후 이용할수 있습니다',
+          color: 'lightgoldenrodyellow',
+        }),
+      );
       history.goBack();
     }
   }, []);

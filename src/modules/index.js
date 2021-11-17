@@ -3,12 +3,13 @@ import auth from './auth';
 import login from './login';
 import token from './token';
 import checkout from './checkout';
+import info from './info';
 
 const rootReducer = combineReducers({
-  auth,
   login,
   token,
   checkout,
+  info,
 });
 
 export default rootReducer;
