@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { initCheckout } from '../modules/checkout';
@@ -68,7 +68,7 @@ function Detail(props) {
 
   console.log(product);
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
           <img
@@ -77,43 +77,35 @@ function Detail(props) {
             alt="로딩중입니다."
           />
         </div>
-        <div className="col-md-6 mt-4">
-          <h4 className="pt-5">{product.name}</h4>
+        <div className="col-md-6 text-center">
+          <h2 className="pt-5">{product.name}</h2>
           <p>가격 : {product.price}</p>
           <p>설명 : {product.info}</p>
-        </div>
-      </div>
-      <Row>
-        <Col>
-          <button
+          <Button
             onClick={() => {
               onClickCheckout();
             }}
-            className="btn btn-danger"
+            className="btn btn-primary"
+            size="lg"
           >
             주문하기
-          </button>
-        </Col>
-        <Col>
-          <button
-            onClick={() => {
-              history.push('/cart');
-            }}
-            className="btn btn-danger"
-          >
-            장바구니
-          </button>
-        </Col>
-        <Col>
-          <button
+          </Button>
+          <p></p>
+          <Button
             onClick={() => {
               history.goBack();
             }}
-            className="btn btn-danger"
+            className="btn btn-secondary"
+            size="lg"
           >
             뒤로가기
-          </button>
-        </Col>
+          </Button>
+        </div>
+      </div>
+      <Row className="text-center">
+        <Col md={6} />
+        <Col md={3}></Col>
+        <Col></Col>
       </Row>
     </div>
   );

@@ -101,7 +101,7 @@ function Join() {
                 onChange={handleInputAddr}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" size={'lg'}>
               회원가입
             </Button>
           </Form>

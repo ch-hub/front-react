@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Search from './Search';
-import Card from './Card';
+import MyCard from './MyCard';
 import Data from './data';
 import { Container, Nav, Row } from 'react-bootstrap';
 import axios from 'axios';
@@ -41,6 +41,7 @@ function Shop() {
             onClick={() => {
               setTab(2);
             }}
+            disabled
           >
             장바구니
           </Nav.Link>
@@ -78,7 +79,7 @@ function TabContent(props) {
         <Container>
           <Row>
             {products.map((a, i) => {
-              return <Card item={a} i={i} key={i} />;
+              return <MyCard item={a} i={i} key={i} />;
             })}
           </Row>
         </Container>

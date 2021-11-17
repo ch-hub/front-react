@@ -4,6 +4,7 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { saveInput } from '../modules/login';
 import { useHistory } from 'react-router';
+import MyModal from './MyModal';
 
 function Login() {
   let dispatch = useDispatch();
@@ -11,6 +12,7 @@ function Login() {
 
   const [inputId, setInputId] = useState('');
   const [inputPw, setInputPw] = useState('');
+  const [isEnd, setEnd] = useState(false);
 
   let tempJwt;
 
@@ -41,6 +43,7 @@ function Login() {
           'auth',
           JSON.stringify({ id: inputId, pw: inputPw, jwt: jwt }),
         );
+        setEnd(true);
         history.push('/');
       })
       .catch((res) => {
@@ -68,7 +71,7 @@ function Login() {
       </Row>
       <Row>
         <Col md="2" />
-        <Col>
+        <Col className="">
           <Form onSubmit={onClickLogin}>
             <Form.Group className="mb-3" controlId="formId">
               <Form.Label>ID</Form.Label>
@@ -86,25 +89,12 @@ function Login() {
                 onChange={handleInputPw}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" size="lg">
               로그인
             </Button>
           </Form>
         </Col>
         <Col md="2" />
-      </Row>
-      <Row>
-        <Col md="2" />
-        <Col>
-          <Button>회원가입</Button>
-          <Button onClick={apiTest}>Test</Button>
-        </Col>
-        <Col md="2" />
-      </Row>
-      <Row>
-        <Col>{inputId}</Col>
-        <Col>{inputPw}</Col>
-        <Col>{tempJwt}</Col>
       </Row>
     </Container>
   );

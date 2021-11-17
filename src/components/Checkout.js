@@ -1,14 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Col, Container, Row, Table } from 'react-bootstrap';
+import { Button, Col, Container, Dropdown, Row, Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 function Checkout() {
   const { orders } = useSelector((state) => state.checkout);
+  let history = useHistory();
+  const [installment, setInstallment] = useState(0);
 
   useEffect(() => {
-    console.log(orders);
+    // console.log(orders);
   }, []);
+
+  const clickBuyBtn = () => {
+    //
+    // axios
+    //   .post('/app/deal', {
+    //     buyerId: 'buyer',
+    //     toUserId: 'company',
+    //     installment: installment,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((e) => {
+    //     console.error(e);
+    //   });
+
+    history.push('/myInfo');
+  };
   return (
     <Container>
       <Row>
@@ -36,31 +57,40 @@ function Checkout() {
         </Table>
       </Row>
       <Row>
-        <Col />
-        <Col className="text-center">
-          <Button>결제하기</Button>
+        <Col className="text-end">
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="installment-period">
+              {installment === 0 ? (
+                <div>할부개월수 선택</div>
+              ) : (
+                <div>{installment} 개월</div>
+              )}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => setInstallment(3)} eventKey="1">
+                3개월
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setInstallment(6)} eventKey="2">
+                6개월
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setInstallment(12)} eventKey="3">
+                12개월
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
-        <Col />
+        <Col className="text-start">
+          <Button
+            onClick={() => {
+              clickBuyBtn();
+            }}
+          >
+            결제하기
+          </Button>
+        </Col>
       </Row>
     </Container>
   );
-}
-
-function buy(props) {
-  const installment = 2;
-
-  axios
-    .post('/app/deal', {
-      buyerId: 'buyer',
-      toUserId: 'company',
-      installment: installment,
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((e) => {
-      console.error(e);
-    });
 }
 
 export default Checkout;
