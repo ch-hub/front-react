@@ -18,25 +18,24 @@ function Checkout() {
   let history = useHistory();
 
   const [installment, setInstallment] = useState(0);
-
+  const [option, setOption] = useState(null);
   useEffect(() => {
     // console.log(orders);
   }, []);
 
   const clickBuyBtn = () => {
-    //
-    // axios
-    //   .post('/app/deal', {
-    //     buyerId: 'buyer',
-    //     toUserId: 'company',
-    //     installment: installment,
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((e) => {
-    //     console.error(e);
-    //   });
+    axios
+      .post('/app/deal/stable', {
+        buyerId: 'buyer',
+        productIdx: 1,
+        installment: installment,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
 
     history.push('/myInfo');
   };
@@ -59,13 +58,25 @@ function Checkout() {
                 <tr key={i}>
                   <td>{i}</td>
                   <td>{a.name}</td>
-                  <td>{a.price}</td>
+                  <td>{a.price.toLocaleString('ko-KR')}</td>
                   <td>{a.qty}</td>
                 </tr>
               );
             })}
           </tbody>
         </Table>
+      </Row>
+      <Row className="text-center m-3">
+        <Col>
+          {installment !== 0 ? (
+            <h4>
+              한달동안 내야하는 금액 :{' '}
+              {Math.ceil(orders[0].price / installment).toLocaleString('ko-KR')}
+            </h4>
+          ) : (
+            <h4>할부기간을 설정하시오</h4>
+          )}
+        </Col>
       </Row>
       <Row>
         <Col className="text-end">
@@ -89,6 +100,31 @@ function Checkout() {
                     </Dropdown.Item>
                   );
                 })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+        <Col className="text-center">
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              {option === null ? '구매수단' : option}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                onClick={() => {
+                  setOption('klay');
+                }}
+                key={0}
+              >
+                Hongik Token
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  setOption('Hongik');
+                }}
+                key={1}
+              >
+                Klay
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Col>

@@ -53,7 +53,7 @@ function Join() {
   return (
     <Container>
       <Row>
-        <Col className="text-center">
+        <Col className="text-center mt-5">
           <h1>회원가입</h1>
         </Col>
       </Row>

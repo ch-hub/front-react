@@ -79,7 +79,7 @@ function Detail(props) {
         </div>
         <div className="col-md-6 text-center">
           <h2 className="pt-5">{product.name}</h2>
-          <p>가격 : {product.price}</p>
+          <p>가격 : {product.price.toLocaleString('ko-KR')}</p>
           <p>설명 : {product.info}</p>
           <Button
             onClick={() => {

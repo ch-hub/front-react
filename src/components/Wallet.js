@@ -16,8 +16,10 @@ function Wallet(props) {
   let [stable, setStable] = useState(0);
 
   let [nftList, setNftList] = useState([]);
-  let [nft, setNft] = useState({});
+  let [nft, setNft] = useState(null);
   // let nftList;
+
+  const [isLoading, setLoading] = useState(true);
 
   let date = '2021-11-16T09:37:43.000Z';
 
@@ -38,14 +40,12 @@ function Wallet(props) {
           setStable(stableBalance);
           setAccount(walletAd);
 
-          let list = [];
           productIdxList.forEach((id) => {
             axios.get('/app/products/' + id).then((response) => {
               const { name, info } = response.data.result[0];
-              list.push({ name, info });
+              setNft({ name, info });
             });
           });
-          setNftList(list);
         })
         .catch((res) => {
           console.log(res);
@@ -65,12 +65,13 @@ function Wallet(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(nft);
-  //   return () => {
-  //     setNftList([...nftList, nft]);
-  //   };
-  // }, [nft]);
+  useEffect(() => {
+    if (nft !== null) {
+      const nextNftList = nftList.concat(nft);
+      setNftList(nextNftList);
+      setLoading(false);
+    }
+  }, [nft]);
 
   const getKlay = () => {
     const amount = 1;
@@ -84,7 +85,7 @@ function Wallet(props) {
   };
 
   const getStable = () => {
-    const amount = 1;
+    const amount = 100000;
 
     axios
       .post('/app/stable/', { buyerId: buyerId, amount: amount })
@@ -129,8 +130,15 @@ function Wallet(props) {
             <Card.Img variant="top" src="img/hongikCoin.png" />
             <Card.Body>
               <Card.Title>Hongik Token</Card.Title>
-              <Card.Text>잔액 : {stable}</Card.Text>
-              <Button variant="danger">충전하기</Button>
+              <Card.Text>잔액 : {stable.toLocaleString('ko-KR')}원</Card.Text>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  getStable();
+                }}
+              >
+                충전하기
+              </Button>
             </Card.Body>
           </Card>
         </Col>
@@ -142,7 +150,7 @@ function Wallet(props) {
         </Col>
       </Row>
       <Row className="mb-5">
-        {nftList ? (
+        {isLoading === false ? (
           nftList.map((a, i) => {
             return (
               <Col key={i} md={4} xs={6}>
