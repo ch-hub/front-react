@@ -85,7 +85,7 @@ function Wallet(props) {
   };
 
   const getStable = () => {
-    const amount = 100000;
+    const amount = 10000;
 
     axios
       .post('/app/stable/', { buyerId: buyerId, amount: amount })
@@ -170,7 +170,7 @@ function Wallet(props) {
             );
           })
         ) : (
-          <div>loading</div>
+          <div></div>
         )}
       </Row>
     </Container>

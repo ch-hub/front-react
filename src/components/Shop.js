@@ -5,6 +5,7 @@ import Data from './data';
 import { Container, Nav, Row } from 'react-bootstrap';
 import axios from 'axios';
 import Cart from './Cart';
+import Sale from './Sale';
 
 function Shop() {
   let [tab, setTab] = useState(0);
@@ -30,7 +31,6 @@ function Shop() {
             onClick={() => {
               setTab(1);
             }}
-            disabled
           >
             판매
           </Nav.Link>
@@ -79,7 +79,7 @@ function TabContent(props) {
         <Container>
           <Row>
             {products.map((a, i) => {
-              return <MyCard item={a} i={i} key={i} />;
+              return <MyCard item={a} i={products[i].productIdx} key={i} />;
             })}
           </Row>
         </Container>
@@ -87,7 +87,7 @@ function TabContent(props) {
     );
   } else if (props.tab === 1) {
     // 판매자 페이지
-    return <></>;
+    return <Sale />;
   } else {
     // 장바구니
     return <Cart />;

@@ -44,10 +44,15 @@ function Bnpl() {
         <Col className="text-center">
           <Card>
             <Card.Body>
-              {/*BNPL 성공!*/}
-              다음 결제일자 :{info.deal_at.substr(0, 10)}
+              {!isLate ? (
+                <div>BNPL 실패</div>
+              ) : (
+                <div>다음 결제일자 :{info.deal_at.substr(0, 10)}</div>
+              )}
+              {/*BNPL 실패*/}
+              {/*다음 결제일자 :{info.deal_at.substr(0, 10)}*/}
               <p></p>
-              {info.deal_at.substr(11, 8)}
+              {/*{info.deal_at.substr(11, 8)}*/}
             </Card.Body>
           </Card>
         </Col>
@@ -60,16 +65,18 @@ function Bnpl() {
         <Col className="text-center">
           <Card>
             <Card.Body>
-              {0 !== 0 ? (
-                <div>남은 연체료 : 2, 000</div>
-              ) : (
-                <div>연체료 없음</div>
-              )}
+              {!isLate ? <div>남은 연체료 : 500</div> : <div>연체료 없음</div>}
             </Card.Body>
           </Card>
         </Col>
         <Col className="text-center mt-2">
-          <Button size={'lg'} disabled={!isLate}>
+          <Button
+            size={'lg'}
+            disabled={isLate}
+            onClick={() => {
+              setLate(!isLate);
+            }}
+          >
             연체갚기
           </Button>
         </Col>

@@ -11,6 +11,7 @@
     "bootstrap-styled": "^2.7.2",
     "connected-react-router": "^6.9.1",
     "history": "^4.10.1",
+    "http-proxy-middleware": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0",
@@ -52,7 +53,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3002",
   "devDependencies": {
     "prettier": "2.4.1"
   }

@@ -21,8 +21,8 @@ function Navigations() {
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link disabled>
-          <Link to="/swap" className="text-dark text-decoration-line-through">
+        <Nav.Link>
+          <Link to="/swap" style={linkStyle}>
             SWAP
           </Link>
         </Nav.Link>

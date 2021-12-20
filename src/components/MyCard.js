@@ -9,7 +9,7 @@ function MyCard({ item, i }) {
     <Container
       className="col-md-4 text-center"
       onClick={() => {
-        history.push('/detail/' + (i + 1));
+        history.push('/detail/' + i);
       }}
     >
       <Card className="m-1 mt-3">

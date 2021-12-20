@@ -27,7 +27,7 @@ function Checkout() {
     axios
       .post('/app/deal/stable', {
         buyerId: 'buyer',
-        productIdx: 1,
+        productIdx: orders[0].productIdx,
         installment: installment,
       })
       .then((response) => {
@@ -111,7 +111,7 @@ function Checkout() {
             <Dropdown.Menu>
               <Dropdown.Item
                 onClick={() => {
-                  setOption('klay');
+                  setOption('Hongik');
                 }}
                 key={0}
               >
@@ -119,7 +119,7 @@ function Checkout() {
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
-                  setOption('Hongik');
+                  setOption('Klay');
                 }}
                 key={1}
               >
