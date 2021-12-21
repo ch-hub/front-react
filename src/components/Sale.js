@@ -7,16 +7,13 @@ const Sale = () => {
   const buyerId = useSelector((state) => state.login.id);
 
   const [imgFile, setImage] = useState(null);
-  const [imgName, setImgName] = useState(null);
+  const [imgName, setImgName] = useState('blank.png');
 
   const [name, setName] = useState('example');
   const [price, setPrice] = useState(1);
   const [info, setInfo] = useState('example info');
 
-  useEffect(() => {
-    console.log('hello');
-    axios.get('');
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const imgChange = (e) => {
     setImage(e.target.files[0]);
@@ -45,7 +42,6 @@ const Sale = () => {
     console.log(rest);
   };
 
-  console.log('imgPath : ', `http://localhost:3002/${imgName}`);
   return (
     <Container className="text-center">
       <Row>1. NFT 생성</Row>
@@ -99,8 +95,6 @@ const Sale = () => {
           </Button>
         </Form>
       </Row>
-      <Row>2.판매 상품</Row>
-      <Row></Row>
     </Container>
   );
 };

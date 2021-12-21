@@ -61,6 +61,8 @@ function TabContent(props) {
         setProducts(null);
         const response = await axios.get('/app/products');
         setProducts(response.data.result);
+
+        localStorage.setItem('products', JSON.stringify(response.data.result));
       } catch (e) {
         console.error(e);
       }
@@ -71,7 +73,6 @@ function TabContent(props) {
 
   if (!products) return null;
 
-  console.log(products);
   if (props.tab === 0) {
     return (
       <div>

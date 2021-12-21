@@ -16,8 +16,6 @@ function Wallet(props) {
   let [stable, setStable] = useState(0);
 
   let [nftList, setNftList] = useState([]);
-  let [nft, setNft] = useState(null);
-  // let nftList;
 
   const [isLoading, setLoading] = useState(true);
 
@@ -34,18 +32,9 @@ function Wallet(props) {
           const { walletAd, walletBalance2, stableBalance, productIdxList } =
             res.data.result;
 
-          console.log(res.data.result);
-
           setKlay(walletBalance2);
           setStable(stableBalance);
           setAccount(walletAd);
-
-          productIdxList.forEach((id) => {
-            axios.get('/app/products/' + id).then((response) => {
-              const { name, info } = response.data.result[0];
-              setNft({ name, info });
-            });
-          });
         })
         .catch((res) => {
           console.log(res);
@@ -53,6 +42,15 @@ function Wallet(props) {
     };
     try {
       getAccount();
+      const jsonProducts = localStorage.getItem('products');
+      const products = JSON.parse(jsonProducts);
+      let myNft = [];
+      products.map((product) => {
+        if (product.ownerId === buyerId) {
+          myNft.push(product);
+        }
+      });
+      setNftList(myNft);
     } catch (e) {
       console.log(e);
       dispatch(
@@ -64,14 +62,6 @@ function Wallet(props) {
       history.goBack();
     }
   }, []);
-
-  useEffect(() => {
-    if (nft !== null) {
-      const nextNftList = nftList.concat(nft);
-      setNftList(nextNftList);
-      setLoading(false);
-    }
-  }, [nft]);
 
   const getKlay = () => {
     const amount = 1;
@@ -90,10 +80,12 @@ function Wallet(props) {
     axios
       .post('/app/stable/', { buyerId: buyerId, amount: amount })
       .then((res) => {
-        console.log('getStable');
-        console.log(res);
+        // console.log('getStable');
+        // console.log(res);
       });
   };
+
+  if (!nftList) return null;
 
   return (
     <Container>
@@ -150,14 +142,14 @@ function Wallet(props) {
         </Col>
       </Row>
       <Row className="mb-5">
-        {isLoading === false ? (
+        {nftList !== null ? (
           nftList.map((a, i) => {
             return (
               <Col key={i} md={4} xs={6}>
                 <Card className="text-center">
                   <Card.Img
                     variant="top"
-                    src={`/img/${a.name}.jpg`}
+                    src={`http://localhost:3002/${a.imageName}`}
                     height="200px"
                     width="200px"
                   />

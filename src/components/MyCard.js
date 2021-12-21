@@ -15,7 +15,7 @@ function MyCard({ item, i }) {
       <Card className="m-1 mt-3">
         <Card.Img
           variant="top"
-          src={`img/${item.name}.jpg`}
+          src={`http://localhost:3002/${item.imageName}`}
           height="230px"
           width="230px"
         />
