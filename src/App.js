@@ -16,6 +16,7 @@ import { useHistory } from 'react-router';
 import MyInfo from './components/MyInfo';
 import styled from 'styled-components';
 import { endModal } from './modules/info';
+import Supply from './components/Supply';
 
 let MyModal = styled.div`
   background-color: ${(props) => props.color};
@@ -72,6 +73,10 @@ function App() {
         <Route path="/shop">
           <Navigations />
           <Shop />
+        </Route>
+        <Route path="/supply">
+          <Navigations />
+          <Supply />
         </Route>
         <Route path="/login">
           <Login />
